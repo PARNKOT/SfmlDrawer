@@ -14,10 +14,6 @@ class ShapeWrapper : sf::Shape {
 
 int main()
 {
-
-    //sf::CircleShape circle(30.0f);
-    //sf::Shape *shape;
-    //shape = &circle;
     Application app(1000, 700);
     app.run();
 
