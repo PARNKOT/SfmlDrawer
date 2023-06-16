@@ -34,8 +34,7 @@ void Application::run() {
 			}
 			else if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Delete) {
-					m_circles.clear();
-					m_rectangles.clear();
+					clearShapes();
 				}
 
 			}
@@ -47,7 +46,7 @@ void Application::run() {
 				}
 
 				if (m_mode == MODES::circle) {
-					createCircle(40.0f, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
+ 					createCircle(40.0f, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
 				}
 				else if (m_mode == MODES::rectangle) {
 					createRectangle(80, 50, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
@@ -71,12 +70,8 @@ void Application::run() {
 }
 
 void  Application::update() {
-	for (int i = 0; i < m_circles.size(); ++i) {
-		m_window.draw(m_circles.at(i));
-	}
-
-	for (int i = 0; i < m_rectangles.size(); ++i) {
-		m_window.draw(m_rectangles.at(i));
+	for (int i = 0; i < m_shapes.size(); ++i) {
+		m_window.draw(*m_shapes.at(i));
 	}
 
 	for (int i = 0; i < m_modeWindows.size(); ++i) { 
@@ -108,19 +103,25 @@ void Application::switchMode(int x, int y) {
 }
 
 void Application::createCircle(float radius, sf::Vector2f pos) {
-	sf::CircleShape circle(radius);
+	sf::CircleShape* pcircle = new sf::CircleShape(radius);
+	pcircle->setFillColor(sf::Color(255, 255, 255, 120));
+	pcircle->setPosition(pos.x - radius, pos.y - radius);
 
-	circle.setFillColor(sf::Color(255, 255, 255, 120));
-	circle.setPosition(pos.x - radius, pos.y - radius);
-
-	m_circles.push_back(circle);
+	m_shapes.push_back(pcircle);
 }
 
 void Application::createRectangle(int width, int height, sf::Vector2f pos) {
-	sf::RectangleShape rectangle(sf::Vector2f(width, height));
+	sf::RectangleShape* prectangle = new sf::RectangleShape(sf::Vector2f(width, height));
+	prectangle->setFillColor(sf::Color(255, 255, 255, 120));
+	prectangle->setPosition(pos.x - width / 2, pos.y - height / 2);
 
-	rectangle.setFillColor(sf::Color(255, 255, 255, 200));
-	rectangle.setPosition(pos.x - width/2, pos.y - height/2);
+	m_shapes.push_back(prectangle);
+}
 
-	m_rectangles.push_back(rectangle);
+void Application::clearShapes() {
+	for (int i = 0; i < m_shapes.size(); ++i) {
+		delete m_shapes.at(i);
+	}
+
+	m_shapes.clear();
 }

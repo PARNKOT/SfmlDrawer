@@ -1,8 +1,23 @@
 ﻿#include <SFML/Graphics.hpp>
 #include "Application.h"
 
+class ShapeWrapper : sf::Shape {
+
+    virtual std::size_t getPointCount() const {
+
+    }
+
+    virtual sf::Vector2f getPoint(std::size_t index) {
+
+    }
+};
+
 int main()
 {
+
+    //sf::CircleShape circle(30.0f);
+    //sf::Shape *shape;
+    //shape = &circle;
     Application app(1000, 700);
     app.run();
 
