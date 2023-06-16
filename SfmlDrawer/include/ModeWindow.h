@@ -8,7 +8,7 @@ class ModeWindow : public sf::Transformable, public sf::Drawable
 {
 protected:
 	sf::Text m_title;
-	sf::RectangleShape m_rectangle;
+	sf::RectangleShape m_rectangle; 
 	MODES m_mode;
 	bool isFocused;
 	bool isSelected;
@@ -29,6 +29,7 @@ public:
 	bool contains(sf::Vector2f point);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
 
 };
 

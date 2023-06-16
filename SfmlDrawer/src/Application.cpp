@@ -1,8 +1,8 @@
 #include "Application.h"
 
 
-Application::Application(unsigned int width, unsigned int height) : 
-	m_window(sf::VideoMode(width, height),  "Test"),
+Application::Application(unsigned int width, unsigned int height) :
+	m_window(sf::VideoMode(width, height), "Test", sf::Style::Close),
 	m_mode(MODES::circle)
 {
 	m_window.setFramerateLimit(60);
@@ -50,7 +50,7 @@ void Application::run() {
 					createCircle(40.0f, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
 				}
 				else if (m_mode == MODES::rectangle) {
-					createRectangle(40, 30, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
+					createRectangle(80, 50, sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
 				}
 			}
 			else if (event.type == sf::Event::MouseMoved) {
