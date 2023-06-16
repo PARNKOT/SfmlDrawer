@@ -7,16 +7,12 @@ Application::Application(unsigned int width, unsigned int height) :
 {
 	m_window.setFramerateLimit(60);
 
-	m_font.loadFromFile("C:/Egor/Ñ++/SfmlDrawer/fonts/times.ttf");
-
+	m_font.loadFromFile("../fonts/times.ttf");
 	ModeWindow modeRectangle(200, 150, MODES::rectangle);
 	ModeWindow modeCircle(200, 150, MODES::circle);
 
 	modeRectangle.setPosition(20, 20);
 	modeCircle.setPosition(20, 220);
-
-	//modeRectangle.setFillColor(sf::Color(169, 169, 169, 100));
-	//modeCircle.setFillColor(sf::Color(169, 169, 169, 100));
 
 	modeRectangle.setText("Rectangle", m_font);
 	modeCircle.setText("Circle", m_font);
